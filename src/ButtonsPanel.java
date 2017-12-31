@@ -1,11 +1,12 @@
 import javax.swing.*;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 /**
  * Created by shir.cohen on 12/30/2017.
  */
 class ButtonsPanel extends JPanel {
-    ButtonsPanel(Hashtable calender, JTextArea comment, DatePanel datePanel) {
+
+    ButtonsPanel(HashMap calender, JTextArea comment, DatePanel datePanel) {
         JButton saveButton = new JButton("Save");
         add(saveButton);
         saveButton.addActionListener(

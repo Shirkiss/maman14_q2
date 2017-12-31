@@ -1,12 +1,11 @@
-
-import java.util.Date;
+import java.io.Serializable;
 
 import static java.time.Year.isLeap;
 
 /**
  * Created by shir.cohen on 12/30/2017.
  */
-public class MyDate {
+public class MyDate implements Serializable {
     private int day;
     private int month;
     private int year;

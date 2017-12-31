@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.Serializable;
 
 /**
  * Created by shir.cohen on 12/30/2017.
  */
-public class DatePanel extends JPanel {
+public class DatePanel extends JPanel{
 
     public JComboBox<Integer> comboxBoxDay;
     public JComboBox<Integer> comboxBoxYear;

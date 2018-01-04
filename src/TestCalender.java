@@ -1,7 +1,10 @@
 import javax.swing.*;
 
 /**
- * Created by shir.cohen on 12/30/2017.
+ * TestCalender.java
+ * Purpose: Create a calender app and let the user save and load reminder on it
+ *
+ * @author Shir Cohen
  */
 public class TestCalender {
 
@@ -12,4 +15,3 @@ public class TestCalender {
         calenderFrame.setVisible(true);
     }
 }
-

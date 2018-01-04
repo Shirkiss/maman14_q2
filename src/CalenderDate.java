@@ -3,31 +3,48 @@ import java.io.Serializable;
 import static java.time.Year.isLeap;
 
 /**
- * Created by shir.cohen on 12/30/2017.
+ * CalenderDate.java
+ * Represent a date such as "01/01/2018"
+ *
+ * @author Shir Cohen
  */
-public class MyDate implements Serializable {
+public class CalenderDate implements Serializable {
     private int day;
     private int month;
     private int year;
 
-    public MyDate(int year, int month, int day) throws IllegalArgumentException {
+    CalenderDate(int year, int month, int day) throws IllegalArgumentException {
         if (!isValid(year, month, day)) throw new IllegalArgumentException();
         this.year = year;
         this.month = month;
         this.day = day;
     }
 
-
+    /**
+     * Create hash code to CalenderDate object based on the String it represent
+     *
+     * @return hash code number
+     */
     @Override
     public int hashCode() {
         return this.toString().hashCode();
     }
 
+    /**
+     * Check if 2 dates are equals
+     *
+     * @return true if the dates are equal
+     */
     @Override
     public boolean equals(Object obj) {
-        return (this.toString().hashCode() == obj.toString().hashCode());
+        return (this.hashCode() == obj.hashCode());
     }
 
+    /**
+     * Getter for day
+     *
+     * @return day
+     */
     public int getDay() {
         return this.day;
     }
@@ -75,7 +92,7 @@ public class MyDate implements Serializable {
      * @param day
      * @return true if it is valid date
      */
-    public static boolean isValid(int year, int month, int day) {
+    private static boolean isValid(int year, int month, int day) {
         if (year < 0) return false;
         if ((month < 1) || (month > 12)) return false;
         if ((day < 1) || (day > 31)) return false;

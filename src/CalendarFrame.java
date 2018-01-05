@@ -6,22 +6,22 @@ import java.nio.file.Files;
 import java.util.HashMap;
 
 /**
- * CalenderFrame.java
- * Purpose: Create a Frame with calender's reminder component - date picker, comment section and a menu.
+ * CalendarFrame.java
+ * Purpose: Create a Frame with calendar's reminder component - date picker, comment section and a menu.
  *
  * @author Shir Cohen
  */
-class CalenderFrame extends JFrame {
+class CalendarFrame extends JFrame {
     private final GridBagLayout layout;
     private final GridBagConstraints constraints;
-    private HashMap<CalenderDate, String> calender = new HashMap<>();
+    private HashMap<CalendarDate, String> calendar = new HashMap<>();
     private JTextArea textArea;
     private JComboBox<Integer> comboxBoxDay;
     private JComboBox<String> comboxBoxMonth;
     private JComboBox<Integer> comboxBoxYear;
 
-    CalenderFrame() {
-        super("Calender Notes");
+    CalendarFrame() {
+        super("Calendar Notes");
         layout = new GridBagLayout();
         setLayout(layout);
         constraints = new GridBagConstraints();
@@ -83,14 +83,14 @@ class CalenderFrame extends JFrame {
         saveButton.addActionListener(
                 e -> {
                     try {
-                        // create CalenderDate object with the selected date
-                        CalenderDate calenderDate = new CalenderDate(Integer.parseInt(comboxBoxYear.getSelectedItem().toString()),
+                        // create CalendarDate object with the selected date
+                        CalendarDate calendarDate = new CalendarDate(Integer.parseInt(comboxBoxYear.getSelectedItem().toString()),
                                 (comboxBoxMonth.getSelectedIndex() + 1),
                                 Integer.parseInt(comboxBoxDay.getSelectedItem().toString()));
-                        // store this date and comment on the calender HashMap and show the user a message
-                        calender.put(calenderDate, textArea.getText());
+                        // store this date and comment on the calendar HashMap and show the user a message
+                        calendar.put(calendarDate, textArea.getText());
                         JOptionPane.showMessageDialog(null, "Your reminder was saved!\n " + textArea.getText()
-                                , calenderDate.toString(), JOptionPane.PLAIN_MESSAGE);
+                                , calendarDate.toString(), JOptionPane.PLAIN_MESSAGE);
                         // if illegal date was picked show the user a message
                     } catch (IllegalArgumentException illegalexc) {
                         JOptionPane.showMessageDialog(null, "Invalid date", "Error", JOptionPane.ERROR_MESSAGE);
@@ -103,12 +103,12 @@ class CalenderFrame extends JFrame {
         loadButton.addActionListener(
                 e -> {
                     try {
-                        // create CalenderDate object with the selected date
-                        CalenderDate calenderDate = new CalenderDate(Integer.parseInt(comboxBoxYear.getSelectedItem().toString()),
+                        // create CalendarDate object with the selected date
+                        CalendarDate calendarDate = new CalendarDate(Integer.parseInt(comboxBoxYear.getSelectedItem().toString()),
                                 (comboxBoxMonth.getSelectedIndex() + 1),
                                 Integer.parseInt(comboxBoxDay.getSelectedItem().toString()));
-                        // show the comment that related to this CalenderDate
-                        textArea.setText(calender.get(calenderDate));
+                        // show the comment that related to this CalendarDate
+                        textArea.setText(calendar.get(calendarDate));
                     } catch (NullPointerException ex) { // handle situation that the user load non .ser file
                         JOptionPane.showMessageDialog(null, "Can't load this comment.\n Please make sure you opened '.ser' file only",
                                 "Error", JOptionPane.ERROR_MESSAGE);
@@ -166,7 +166,7 @@ class CalenderFrame extends JFrame {
                     }
                     if (dialogResult == JOptionPane.NO_OPTION || dialogResult == JOptionPane.YES_OPTION) {
                         textArea.setText("");
-                        calender = new HashMap<>();
+                        calendar = new HashMap<>();
                     }
                 });
         JMenuItem saveItem = new JMenuItem("Save");
@@ -207,7 +207,7 @@ class CalenderFrame extends JFrame {
         if (file != null && Files.exists(file.toPath())) {
             try {
                 ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
-                calender = (HashMap<CalenderDate, String>) ois.readObject();
+                calendar = (HashMap<CalendarDate, String>) ois.readObject();
                 textArea.setText("");
             } catch (IOException | ClassNotFoundException ioException) {
                 JOptionPane.showMessageDialog(null, "Error opening file. Please try again",
@@ -233,7 +233,7 @@ class CalenderFrame extends JFrame {
             try {
                 FileOutputStream fout = new FileOutputStream(file.getName());
                 ObjectOutputStream oos = new ObjectOutputStream(fout);
-                oos.writeObject(calender);
+                oos.writeObject(calendar);
                 oos.close();
             } catch (Exception ex) {
                 ex.printStackTrace();

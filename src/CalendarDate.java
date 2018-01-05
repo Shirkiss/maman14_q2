@@ -3,17 +3,17 @@ import java.io.Serializable;
 import static java.time.Year.isLeap;
 
 /**
- * CalenderDate.java
+ * CalendarDate.java
  * Represent a date such as "01/01/2018"
  *
  * @author Shir Cohen
  */
-public class CalenderDate implements Serializable {
+public class CalendarDate implements Serializable {
     private int day;
     private int month;
     private int year;
 
-    CalenderDate(int year, int month, int day) throws IllegalArgumentException {
+    CalendarDate(int year, int month, int day) throws IllegalArgumentException {
         if (!isValid(year, month, day)) throw new IllegalArgumentException();
         this.year = year;
         this.month = month;
@@ -21,7 +21,7 @@ public class CalenderDate implements Serializable {
     }
 
     /**
-     * Create hash code to CalenderDate object based on the String it represent
+     * Create hash code to CalendarDate object based on the String it represent
      *
      * @return hash code number
      */

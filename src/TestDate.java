@@ -6,8 +6,8 @@ import java.util.Hashtable;
 public class TestDate {
 
     public static void main(String[] args) {
-        CalenderDate yesterday = new CalenderDate(2014, 5, 7);
-        CalenderDate today = new CalenderDate(2014, 7, 5);
+        CalendarDate yesterday = new CalendarDate(2014, 5, 7);
+        CalendarDate today = new CalendarDate(2014, 7, 5);
         System.out.println(yesterday); // today is NOT earlier than tomorrow
         System.out.println(today); // today is NOT earlier than tomorrow
         System.out.println(today.equals(yesterday)); // today is NOT earlier than tomorrow
